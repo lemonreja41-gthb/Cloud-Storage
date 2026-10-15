@@ -6,6 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q SmartCloudFS.zip
+      - run: printf "android.useAndroidX=true\norg.gradle.jvmargs=-Xmx2g\n" > SmartCloudFS/gradle.properties
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 17 }
       - run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true

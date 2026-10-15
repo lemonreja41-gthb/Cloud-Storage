@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q SmartCloudFS.zip
-      - run: keytool -genkeypair -v -keystore SmartCloudFS/app/scfs.jks -alias scfs -keyalg RSA -keysize 2048 -validity 10000 -storepass android -keypass android -dname "CN=SmartCloudFS" && keytool -list -v -keystore SmartCloudFS/app/scfs.jks -storepass android | grep SHA1 && base64 -w0 SmartCloudFS/app/scfs.jks
+      - run: ls -la SmartCloudFS; keytool -list -v -keystore SmartCloudFS/scfs.jks -storepass android || true
       - run: printf "android.useAndroidX=true\norg.gradle.jvmargs=-Xmx2g\n" > SmartCloudFS/gradle.properties
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 17 }
